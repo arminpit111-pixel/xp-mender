@@ -1,0 +1,39 @@
+name: Mod bauen
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 9.5.1
+
+      - name: JAR bauen
+        run: gradle build
+
+      - name: JAR als Artifact hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: xp-mender-jar
+          path: build/libs/xp-mender-*.jar
+
+      - name: JAR als Release veroeffentlichen (direkter .jar-Download)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: XP Mender (neuester Build)
+          files: build/libs/xp-mender-*.jar
