@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "xpmender",
+  "version": "${version}",
+  "name": "XP Mender",
+  "description": "Zeigt per HUD, wie viele XP-Bottles du auf welches Ruestungsteil werfen sollst, damit alles gleichmaessig gemendet wird. Menue mit K.",
+  "authors": ["brotbutter96"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["de.xpmender.XpMenderClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
